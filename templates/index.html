@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart OCR Upload & Query</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="container">
+    <h1>Welcome to Ankit's OCR</h1>
+
+    <!-- Upload Form -->
+    <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadForm">
+      <label for="imageUpload" class="custom-file-upload">
+        Choose an Image
+        <input id="imageUpload" type="file" name="image" accept="image/*" required>
+      </label>
+      <button type="submit" class="upload-button">Upload & Process</button>
+    </form>
+    <p id="file-name"></p>
+
+    <hr>
+
+    <!-- Query Section -->
+    <h2>Ask a Question</h2>
+    <form method="POST" action="/query">
+      <input type="text" name="user_query" placeholder="Example: marks of Rohan" required>
+      <button type="submit" class="ask-button">Submit Query</button>
+    </form>
+
+    {% if query_response %}
+    <div class="result">
+      <h3>Result:</h3>
+      <p>{{ query_response }}</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
